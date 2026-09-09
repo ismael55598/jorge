@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSAM - Instituto Nacional de Santiago de María</title>
+    <!-- Iconos Lucide para interfaz gráfica -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --azul-insam: #0a2540;
+            --azul-brillante: #0066cc;
+            --dorado-insam: #f59e0b;
+            --gris-fondo: #f8fafc;
+            --gris-card: #ffffff;
+            --texto-oscuro: #1e293b;
+            --texto-mutado: #64748b;
+            --sombra-elegante: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --transicion: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--gris-fondo);
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+        }
+
+        /* BARRA DE NAVEGACIÓN DIRECTA */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 37, 64, 0.98);
+            backdrop-filter: blur(8px);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo-badge {
+            background: var(--dorado-insam);
+            color: var(--azul-insam);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .nav-btn {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            transition: var(--transicion);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--dorado-insam);
+        }
+
+        .nav-btn-highlight {
+            background: var(--dorado-insam);
+            color: var(--azul-insam);
+        }
+
+        .nav-btn-highlight:hover {
+            background: #e08e0b;
+            color: var(--azul-insam);
+        }
+
+        /* HERO SECTION (SECCIÓN DE INICIO) */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 37, 64, 0.92) 0%, rgba(0, 102, 204, 0.85) 100%), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1350&q=80') center/cover;
+            color: white;
+            padding: 6rem 1.5rem 7rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        /* BARRA DE ESTADÍSTICAS */
+        .stats-bar {
+            background: white;
+            margin-top: -40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: var(--sombra-elegante);
+            position: relative;
+            z-index: 10;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--azul-brillante);
+        }
+
+        .stat-label {
+            color: var(--texto-mutado);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* CONTENEDOR GENERAL */
+        .container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--azul-insam);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--texto-mutado);
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* SECCIÓN MISIÓN EDUCATIVA */
+        .mision-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--sombra-elegante);
+            margin-bottom: 5rem;
+        }
+
+        .mision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mision-card {
+            background: var(--gris-fondo);
+            padding: 1.8rem;
+            border-radius: 12px;
+            border-top: 4px solid var(--azul-brillante);
+            transition: var(--transicion);
+        }
+
+        .mision-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .mision-icon {
+            color: var(--azul-brillante);
+            margin-bottom: 1rem;
+        }
+
+        .mision-card h3 {
+            color: var(--azul-insam);
+            margin-bottom: 0.5rem;
+        }
+
+        /* TARJETAS DE MODALIDADES */
+        .grid-modalidades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--gris-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--sombra-elegante);
+            transition: var(--transicion);
+            border: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header-img {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transicion);
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(10, 37, 64, 0.85);
+            backdrop-filter: blur(4px);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.35rem;
+            color: var(--azul-insam);
+            margin-bottom: 0.6rem;
+        }
+
+        .card-desc {
+            color: var(--texto-mutado);
+            font-size: 0.95rem;
+        }
+
+        /* SECCIÓN DE INFORMACIÓN DE REGISTRO & QR */
+        .info-qr-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 2.5rem;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--sombra-elegante);
+            margin-bottom: 5rem;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .info-qr-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-top: 1.2rem;
+        }
+
+        .info-list-item i {
+            color: var(--azul-brillante);
+            background: #e0f2fe;
+            padding: 10px;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .qr-box-main {
+            background: var(--gris-fondo);
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .qr-box-main img {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            background: white;
+            padding: 8px;
+        }
+
+        /* SECCIÓN FORMULARIO DE INSCRIPCIÓN */
+        .form-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--sombra-elegante);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .form-group-full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group {
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--texto-oscuro);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            transition: var(--transicion);
+        }
+
+        .form-control:focus {
+            border-color: var(--azul-brillante);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+        }
+
+        .form-subtitle {
+            color: var(--azul-insam);
+            font-size: 1.1rem;
+            margin: 1.5rem 0 1rem 0;
+            grid-column: 1 / -1;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 0.4rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 1.5rem 0;
+            grid-column: 1 / -1;
+        }
+
+        .checkbox-container input {
+            width: 20px;
+            height: 20px;
+            margin-top: 3px;
+            cursor: pointer;
+        }
+
+        .checkbox-container label {
+            font-size: 0.88rem;
+            color: var(--texto-mutado);
+            cursor: pointer;
+            line-height: 1.4;
+        }
+
+        .btn-submit {
+            grid-column: 1 / -1;
+            background: var(--azul-insam);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transicion);
+        }
+
+        .btn-submit:hover {
+            background: var(--azul-brillante);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--azul-insam);
+            color: white;
+            padding: 3rem 1.5rem 1.5rem;
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { gap: 0.5rem; }
+            .nav-btn { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
+            .hero h1 { font-size: 2rem; }
+            .stats-bar { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN DIRECTA -->
+    <nav>
+        <a href="#inicio" class="logo-container">
+            INSAM <span class="logo-badge">Oficial</span>
+        </a>
+        <div class="nav-links">
+            <a href="#inicio" class="nav-btn">Ver Inicio</a>
+            <a href="#especialidades" class="nav-btn">Especialidades</a>
+            <a href="#registro" class="nav-btn nav-btn-highlight">Registro</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (INICIO) -->
+    <header id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Instituto Nacional de Santiago de María</h1>
+            <p>Formando profesionales técnicos capacitados para enfrentar los retos del desarrollo profesional y profesionalizarse en El Salvador.</p>
+        </div>
+    </header>
+
+    <!-- BARRA DE ESTADÍSTICAS -->
+    <section class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">+900</div>
+            <div class="stat-label">Alumnos Activos</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Inserción Laboral</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Modalidades Académicas</div>
+        </div>
+    </section>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="container">
+
+        <!-- MISIÓN EDUCATIVA CON 3 OBJETIVOS -->
+        <section class="mision-container">
+            <div class="section-header" style="margin-bottom: 1.5rem;">
+                <h2 class="section-title">Nuestra Misión Educativa</h2>
+                <p class="section-subtitle">Formamos ciudadanos íntegros con competencias técnicas, valores éticos y visión emprendedora para transformar sus comunidades.</p>
+            </div>
+
+            <div class="mision-grid">
+                <div class="mision-card">
+                    <i data-lucide="award" class="mision-icon" size="36"></i>
+                    <h3>Excelencia</h3>
+                    <p>Brindamos educación técnica de alto nivel adaptada a los estándares exigidos por las industrias y universidades actuales.</p>
+                </div>
+                <div class="mision-card">
+                    <i data-lucide="heart" class="mision-icon" size="36"></i>
+                    <h3>Valores</h3>
+                    <p>Fomentamos la ética, responsabilidad social y trabajo en equipo para formar profesionales comprometidos con la comunidad.</p>
+                </div>
+                <div class="mision-card">
+                    <i data-lucide="lightbulb" class="mision-icon" size="36"></i>
+                    <h3>Innovación</h3>
+                    <p>Impulsamos la creatividad, el uso constante de nuevas tecnologías y el espíritu emprendedor en cada especialidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE ESPECIALIDADES -->
+        <section id="especialidades" style="margin-bottom: 5rem;">
+            <div class="section-header">
+                <h2 class="section-title">Modalidades de Bachillerato</h2>
+                <p class="section-subtitle">Conoce nuestra oferta académica disponible para el ciclo escolar</p>
+            </div>
+
+            <div class="grid-modalidades">
+
+                <!-- 1. Mantenimiento Automotriz (Imagen corregida: hombre reparando vehículo) -->
+                <article class="card">
+                    <div class="card-header-img">
+                        <span class="card-badge">Técnico</span>
+                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80" alt="Mecánico reparando motor de auto" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="card-title">Mantenimiento Automotriz</h3>
+                            <p class="card-desc">Diagnóstico electrónico, mecánica integral y reparación de sistemas automotrices con equipo profesional.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. Desarrollo de Software -->
+                <article class="card">
+                    <div class="card-header-img">
+                        <span class="card-badge">Tecnología</span>
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Desarrollo de Software" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="card-title">Desarrollo de Software</h3>
+                            <p class="card-desc">Programación web, aplicaciones móviles, bases de datos y desarrollo de sistemas informáticos.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. Administrativo Contable -->
+                <article class="card">
+                    <div class="card-header-img">
+                        <span class="card-badge">Empresarial</span>
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80" alt="Administrativo Contable" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="card-title">Administrativo Contable</h3>
+                            <p class="card-desc">Gestión contable, finanzas empresariales, costos y administración efectiva de oficina.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. Servicio Turístico -->
+                <article class="card">
+                    <div class="card-header-img">
+                        <span class="card-badge">Turismo</span>
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Servicio Turístico" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="card-title">Servicio Turístico</h3>
+                            <p class="card-desc">Atención integral, hostelería, gastronomía y organización de proyectos turísticos regionales.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 5. Salud -->
+                <article class="card">
+                    <div class="card-header-img">
+                        <span class="card-badge">Salud</span>
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Atención en Salud" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="card-title">Atención en Salud</h3>
+                            <p class="card-desc">Primeros auxilios, enfermería básica, anatomía humana y promoción de salud comunitaria.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 6. General -->
+                <article class="card">
+                    <div class="card-header-img">
+                        <span class="card-badge">Académico</span>
+                        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80" alt="Bachillerato General" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h3 class="card-title">Bachillerato General</h3>
+                            <p class="card-desc">Formación académica de 2 años orientada a la preparación directa para la educación universitaria superior.</p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- INFORMACIÓN DE REGISTRO CON ÚNICO CÓDIGO QR AL COSTADO -->
+        <section class="info-qr-grid">
+            <div>
+                <h2 style="color: var(--azul-insam); font-size: 1.8rem;">Inscripciones Abiertas</h2>
+                <h3 style="color: var(--azul-brillante); margin-top: 0.2rem; font-size: 1.2rem;">Registro de Estudiante</h3>
+                <p style="margin-top: 0.8rem; color: var(--texto-mutado);">Completa el formulario para iniciar tu proceso de inscripción. Nuestro equipo académico se pondrá en contacto contigo dentro de las próximas 48 horas hábiles.</p>
+
+                <div class="info-list-item">
+                    <i data-lucide="map-pin"></i>
+                    <div>
+                        <strong>Dirección</strong>
+                        <p style="font-size: 0.95rem; color: var(--texto-mutado);">Barrio La Parroquia, Santiago de María, Usulután</p>
+                    </div>
+                </div>
+
+                <div class="info-list-item">
+                    <i data-lucide="phone"></i>
+                    <div>
+                        <strong>Teléfono</strong>
+                        <p style="font-size: 0.95rem; color: var(--texto-mutado);">(503) 2663-1234</p>
+                    </div>
+                </div>
+
+                <div class="info-list-item">
+                    <i data-lucide="mail"></i>
+                    <div>
+                        <strong>Correo</strong>
+                        <p style="font-size: 0.95rem; color: var(--texto-mutado);">info@insm.edu.sv</p>
+                    </div>
+                </div>
+
+                <div class="info-list-item">
+                    <i data-lucide="clock"></i>
+                    <div>
+                        <strong>Horario de atención</strong>
+                        <p style="font-size: 0.95rem; color: var(--texto-mutado);">Lunes a Viernes 7:00 AM – 4:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CÓDIGO QR OFICIAL ÚNICO EN LA PÁGINA -->
+            <div class="qr-box-main">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.facebook.com/insamoficial?mibextid=rS40aB7S9Ucbxw6v" alt="Código QR Página Oficial Facebook INSAM">
+                <h4 style="color: var(--azul-insam);">Escanea el QR</h4>
+                <p style="font-size: 0.85rem; color: var(--texto-mutado); margin-top: 4px;">Visita nuestra página de Facebook para avisos oficiales.</p>
+            </div>
+        </section>
+
+        <!-- FORMULARIO DE REGISTRO COMPLETO -->
+        <section id="registro" class="form-section">
+            <div style="margin-bottom: 1.5rem;">
+                <h2 style="color: var(--azul-insam); font-size: 1.8rem;">Formulario de Pre-Inscripción</h2>
+                <p style="color: var(--texto-mutado);">Ingresa tus datos a continuación para registrarte directamente:</p>
+            </div>
+
+            <form onsubmit="alert('¡Solicitud enviada correctamente! Nos pondremos en contacto contigo dentro de 48 horas hábiles.'); return false;">
+                <div class="form-grid">
+                    
+                    <!-- Subtítulo Datos Personales -->
+                    <div class="form-subtitle">Datos Personales</div>
+
+                    <div class="form-group">
+                        <label>Nombre(s) *</label>
+                        <input type="text" class="form-control" placeholder="Ej. Juan Carlos" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Apellido(s) *</label>
+                        <input type="text" class="form-control" placeholder="Ej. Pérez Gómez" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>DUI (si aplica)</label>
+                        <input type="text" class="form-control" placeholder="00000000-0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Correo Electrónico *</label>
+                        <input type="email" class="form-control" placeholder="ejemplo@correo.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Teléfono *</label>
+                        <input type="tel" class="form-control" placeholder="7000-0000" required>
+                    </div>
+
+                    <!-- Subtítulo Información Académica -->
+                    <div class="form-subtitle">Información Académica</div>
+
+                    <div class="form-group">
+                        <label>Especialidad de Interés *</label>
+                        <select class="form-control" required>
+                            <option value="">Seleccione una especialidad</option>
+                            <option>Mantenimiento Automotriz</option>
+                            <option>Desarrollo de Software</option>
+                            <option>Administrativo Contable</option>
+                            <option>Servicio Turístico</option>
+                            <option>Atención en Salud</option>
+                            <option>Bachillerato General</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Grado a Cursar *</label>
+                        <select class="form-control" required>
+                            <option value="">Seleccione el año</option>
+                            <option>1° Año de Bachillerato</option>
+                            <option>2° Año de Bachillerato</option>
+                            <option>3° Año de Bachillerato (Solo Técnicos)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group-full form-group">
+                        <label>Mensaje o consulta (Opcional)</label>
+                        <textarea class="form-control" rows="3" placeholder="Escribe aquí cualquier duda que tengas sobre el proceso de admisión..."></textarea>
+                    </div>
+
+                    <!-- Checkbox de Política de Privacidad -->
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="politica" required>
+                        <label for="politica">Acepto el tratamiento de mis datos personales conforme a la política de privacidad del Instituto Nacional de Santiago de María y autorizo el contacto para seguimiento de mi solicitud.</label>
+                    </div>
+
+                    <!-- Botón Enviar Solicitud -->
+                    <button type="submit" class="btn-submit">Enviar Solicitud</button>
+
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-bottom">
+            <p>© INSAM - Instituto Nacional de Santiago de María. Barrio La Parroquia, Santiago de María, Usulután.</p>
+        </div>
+    </footer>
+
+    <!-- Inicialización de Iconos -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
